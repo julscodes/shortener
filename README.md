@@ -8,7 +8,6 @@ A very simple URL shortener API built with Jersey. Using a tomcat container.
 - No analytics.
 - Links can persist forever.
 - Ids are always auto-generated.
-- Only http* links are supported.
 
 # Structure:
 
@@ -40,7 +39,7 @@ A very simple URL shortener API built with Jersey. Using a tomcat container.
 
 Assumes you have a postgres running on port 15432.
 
-Create tables:
+Create DB and table:
 
 ```
 postgres=# CREATE USER shortener WITH PASSWORD 'sh0rt3nr';
@@ -58,13 +57,26 @@ CREATE TABLE shorturl (
 CREATE INDEX shorturl_date_idx ON shorturl USING btree (date);
 ```
 
+```
+mvn clean package
+```
+Drop the WAR file on a tomcat8+ webapps dir, or:
 
+If don't use/have tomcat, use the provided Dockerfile to deploy it as a container:
 
-This is an bare bones POC. A MVP would also have:
+```
+docker build -t shortener .
+
+docker run -itd -p 8080:8080 --name shortener shortener 
+
+```
+
+This is an bare-bones POC. A MVP would also have:
 
 - A "last visit" date for each url to possibly partition or Cache urls based on this.
 - Rate limiters.
 - User accounts (with a corresponding index by user).
+- OpenAPI spec and documentation for the URLResource.
 
 
 
