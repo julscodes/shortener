@@ -1,0 +1,17 @@
+#Ignore these directories
+ build/*	
+ /build/
+ /.classpath
+/target/
+
+\.idea/compiler\.xml
+
+\.idea/dictionaries/
+
+\.idea/
+
+MessangiAPI\.iml
+
+junit/testing-data/testsendpushcontent\.txt
+
+.DS_Store
